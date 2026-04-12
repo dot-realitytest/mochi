@@ -4,42 +4,55 @@
 
 A desktop companion that makes progress feel alive.
 
-## Live Page
+Mochi turns a plain checklist into a tiny relationship.
 
-- Site: [akakika.com/mochi](https://akakika.com/mochi/)
-- App source: [dot-RealityTest/apps/tree/master/mochi](https://github.com/dot-RealityTest/apps/tree/master/mochi)
+Instead of staring at another cold productivity tool, you hatch a small companion, help it grow, and watch your effort change the mood of your day. The result feels less like task management and more like care, momentum, and ritual.
 
-## Latest Notarized Download
+## Why People Love It
 
-- Latest notarized version: `1.0.0`
-- Download for macOS (Apple Silicon): [Mochi's Daily Quest 1.0.0 DMG](https://github.com/dot-RealityTest/apps/releases/download/v0.1.0/Mochi.s.Daily.Quest-1.0.0-arm64.dmg)
-- Release page: [dot-RealityTest/apps/releases/tag/v0.1.0](https://github.com/dot-RealityTest/apps/releases/tag/v0.1.0)
+- It makes progress visible, emotional, and rewarding
+- It adds warmth to routines that usually feel dry
+- It gives your daily habits a sense of growth, not just completion
+- It lives in your menu bar, so it stays close without getting in the way
 
-## What It Does
+## What Mochi Does
 
-**Simple Todo List**
+**A simple to-do list that feels good to use**
 - Add tasks, check them off
 - Clean, minimal interface
 - Lives in your menu bar
 
-**Kawaii Companion**
+**A companion that grows with you**
 - Your mochi character grows with every completed task
 - Starts as an egg and evolves through baby, teen, and elder
 - Reacts to your progress
 
-**Evolution System**
+**An evolution loop that makes consistency feel real**
 - Egg: Just starting your journey
 - Baby: Learning to check off tasks
 - Teen: Building habits with confidence
 - Elder: Master of your daily routine
 
-**Notarized for macOS**
+**A polished macOS experience**
 - Safe to install
 - No warnings
 - Native Electron app
 
-## Why This Repo Exists
+## Why It Feels Different
 
-This repository is the standalone GitHub Pages home for Mochi.
+Most productivity apps ask for discipline first and delight later.
 
-It keeps the public landing page separate from the main app workspace so the live page can stay simple, fast, and easy to publish.
+Mochi flips that. It gives you delight up front, then uses that emotional pull to make showing up feel easier. You are not just clearing tasks. You are helping a tiny world come alive.
+
+## Built For
+
+- People who want gentler motivation
+- Anyone who likes cute, game-like habit loops
+- Mac users who want a lightweight desktop companion
+- Anyone tired of productivity tools that feel clinical
+
+## Source
+
+The app source lives in the main workspace repository:
+
+- [dot-RealityTest/apps/tree/master/mochi](https://github.com/dot-RealityTest/apps/tree/master/mochi)
