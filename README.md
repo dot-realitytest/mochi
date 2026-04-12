@@ -1,6 +1,8 @@
-# mochi — Grow Your Companion with Every Task
+# mochi
 
-A kawaii Tamagotchi-style daily to-do app. Complete tasks, watch your mochi grow.
+## Give your to-do list a heartbeat.
+
+A desktop companion that makes progress feel alive.
 
 ## Live Page
 
