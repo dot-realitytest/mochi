@@ -1,0 +1,1735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mochi's Daily Quest — Grow a tiny world with every task</title>
+  <meta
+    name="description"
+    content="A cinematic landing page for Mochi's Daily Quest, a kawaii desktop companion that turns daily tasks into evolution, rooms, rewards, and ritual."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #100716;
+      --bg-soft: #1b0d27;
+      --ink: #fff7fd;
+      --muted: #dbc8e6;
+      --line: rgba(255, 255, 255, 0.12);
+      --pink: #ff8ac2;
+      --rose: #ffb6db;
+      --violet: #8b6cff;
+      --peach: #ffc48a;
+      --mint: #9df0d5;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+      --radius: 28px;
+      --max: 1280px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 138, 194, 0.24), transparent 28%),
+        radial-gradient(circle at 85% 18%, rgba(139, 108, 255, 0.18), transparent 24%),
+        radial-gradient(circle at 50% 78%, rgba(157, 240, 213, 0.14), transparent 24%),
+        linear-gradient(180deg, #0f0615 0%, #180a21 35%, #120915 100%);
+      font-family: "Space Grotesk", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.28) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 86%);
+      z-index: 1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+      z-index: 1;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      width: min(calc(100% - 32px), var(--max));
+      margin: 18px auto 0;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      background: rgba(17, 8, 24, 0.58);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(255, 138, 194, 0.35), rgba(139, 108, 255, 0.3));
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      overflow: hidden;
+    }
+
+    .brand-mark img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+    }
+
+    .nav-actions {
+      display: inline-flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .nav-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .chip,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--line);
+      font-size: 0.92rem;
+    }
+
+    .button {
+      padding: 15px 22px;
+      color: #180a21;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--rose), var(--peach));
+      box-shadow: 0 12px 34px rgba(255, 182, 219, 0.28);
+    }
+
+    .button.secondary {
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--line);
+      box-shadow: none;
+    }
+
+    .button:hover,
+    .chip:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      position: relative;
+      width: min(calc(100% - 32px), var(--max));
+      margin: 28px auto 0;
+      min-height: calc(100vh - 110px);
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 32px;
+      align-items: center;
+      padding: 34px 0 80px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 46px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8));
+    }
+
+    .hero h1,
+    .section h2 {
+      font-family: "Syne", sans-serif;
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      margin: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.8rem, 11vw, 9rem);
+      max-width: 9ch;
+    }
+
+    .hero h1 .dim {
+      display: inline-block;
+      color: rgba(255, 247, 253, 0.45);
+    }
+
+    .lede {
+      max-width: 620px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-proof {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 720px;
+    }
+
+    .hero-meta {
+      margin-top: 38px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 700px;
+    }
+
+    .meta-card {
+      padding: 18px 18px 20px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 1.48rem;
+      font-family: "Syne", sans-serif;
+      margin-bottom: 6px;
+    }
+
+    .meta-card span {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .hero-stage {
+      position: relative;
+      min-height: 680px;
+      display: grid;
+      place-items: center;
+    }
+
+    .glow-stack {
+      position: absolute;
+      inset: 12% 4% 6%;
+      border-radius: 50px;
+      background:
+        radial-gradient(circle at 50% 22%, rgba(255, 196, 138, 0.35), transparent 30%),
+        radial-gradient(circle at 28% 62%, rgba(255, 138, 194, 0.24), transparent 38%),
+        radial-gradient(circle at 78% 68%, rgba(139, 108, 255, 0.26), transparent 28%);
+      filter: blur(20px);
+      opacity: 0.92;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: 8% 8%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      animation: spin 22s linear infinite;
+    }
+
+    .hero-orbit::before,
+    .hero-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.22);
+    }
+
+    .hero-orbit::before {
+      width: 14px;
+      height: 14px;
+      top: 10%;
+      left: 14%;
+    }
+
+    .hero-orbit::after {
+      width: 8px;
+      height: 8px;
+      bottom: 14%;
+      right: 16%;
+    }
+
+    .showcase {
+      position: relative;
+      width: min(620px, 100%);
+      aspect-ratio: 0.88;
+      border-radius: 42px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06)),
+        linear-gradient(160deg, rgba(31, 13, 40, 0.88), rgba(14, 7, 17, 0.88));
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(18px);
+    }
+
+    .showcase::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 88%);
+    }
+
+    .showcase-room {
+      position: absolute;
+      inset: 6%;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+    }
+
+    .showcase-room img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.06);
+    }
+
+    .showcase-panel {
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      bottom: 6%;
+      padding: 18px;
+      border-radius: 28px;
+      background: rgba(19, 9, 28, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(18px);
+      display: grid;
+      gap: 14px;
+    }
+
+    .showcase-copy {
+      display: grid;
+      gap: 4px;
+    }
+
+    .showcase-panel header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .showcase-panel strong {
+      font-family: "Syne", sans-serif;
+      font-size: 1.08rem;
+      display: block;
+    }
+
+    .showcase-panel p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .showcase-controls {
+      display: grid;
+      gap: 12px;
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .control-row-label {
+      width: 100%;
+      color: rgba(255, 247, 253, 0.62);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .control-pill {
+      appearance: none;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--ink);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 0.88rem;
+      transition: transform 220ms ease, background 220ms ease, border-color 220ms ease, color 220ms ease;
+    }
+
+    .control-pill.is-selected {
+      background: linear-gradient(135deg, rgba(255, 182, 219, 0.28), rgba(255, 196, 138, 0.24));
+      border-color: rgba(255, 255, 255, 0.34);
+      color: #fff;
+    }
+
+    .control-pill:hover {
+      transform: translateY(-2px);
+    }
+
+    .reward-button {
+      justify-self: start;
+    }
+
+    .reward-status {
+      color: var(--muted);
+      font-size: 0.9rem;
+      min-height: 1.3em;
+    }
+
+    .showcase-progress {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+      overflow: hidden;
+    }
+
+    .showcase-progress span {
+      display: block;
+      width: 76%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink), var(--peach), var(--mint));
+      border-radius: inherit;
+      animation: pulse-bar 4s ease-in-out infinite;
+    }
+
+    .sprite {
+      position: absolute;
+      object-fit: contain;
+      image-rendering: pixelated;
+      filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.28));
+    }
+
+    .sprite-main {
+      width: clamp(180px, 38vw, 340px);
+      right: 12%;
+      top: 14%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .sprite-alt {
+      width: clamp(80px, 13vw, 140px);
+      left: 8%;
+      top: 14%;
+      animation: float 5.8s ease-in-out infinite reverse;
+    }
+
+    .sprite-mini {
+      width: clamp(88px, 14vw, 150px);
+      left: 10%;
+      bottom: 24%;
+      animation: bob 5s ease-in-out infinite;
+    }
+
+    .scroll-note {
+      position: absolute;
+      left: 0;
+      bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .scroll-note::after {
+      content: "";
+      width: 76px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+    }
+
+    .section {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+      padding: 84px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+
+    .section h2 {
+      font-size: clamp(2.5rem, 7vw, 5.6rem);
+      max-width: 10ch;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 58ch;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 0.96fr 1.04fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .story-stage {
+      position: sticky;
+      top: 112px;
+      min-height: 78vh;
+      padding: 28px;
+      border-radius: 34px;
+      border: 1px solid var(--line);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .story-stage img.bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.34;
+      filter: saturate(0.95);
+    }
+
+    .story-stage .inner {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: grid;
+      align-content: space-between;
+      gap: 24px;
+    }
+
+    .story-stage .inner img.character {
+      width: min(290px, 64%);
+      justify-self: center;
+      image-rendering: pixelated;
+      filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.3));
+      animation: float 5.6s ease-in-out infinite;
+    }
+
+    .story-stage footer {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stage-copy {
+      display: grid;
+      gap: 10px;
+    }
+
+    .stage-copy h3 {
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: -0.04em;
+    }
+
+    .stage-copy p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 34ch;
+    }
+
+    .story-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    .story-card {
+      position: relative;
+      min-height: 52vh;
+      padding: 28px;
+      border-radius: 32px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03)),
+        rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transform: translateY(40px);
+      opacity: 0;
+      transition: transform 900ms cubic-bezier(0.2, 1, 0.2, 1), opacity 900ms ease;
+    }
+
+    .story-card.is-visible,
+    .feature-card.is-visible,
+    .room-card.is-visible,
+    .cta-panel.is-visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .story-card::before {
+      content: attr(data-index);
+      position: absolute;
+      right: 24px;
+      top: 24px;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: rgba(255, 255, 255, 0.07);
+      letter-spacing: -0.08em;
+    }
+
+    .story-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .story-card img {
+      width: min(200px, 34vw);
+      margin-top: 26px;
+      image-rendering: pixelated;
+      filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.34));
+    }
+
+    .story-card h3 {
+      margin: 0;
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      letter-spacing: -0.04em;
+    }
+
+    .story-card p {
+      margin: 16px 0 0;
+      max-width: 42ch;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .feature-grid,
+    .rooms-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .feature-card,
+    .room-card {
+      position: relative;
+      padding: 22px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: transform 900ms cubic-bezier(0.2, 1, 0.2, 1), opacity 900ms ease;
+    }
+
+    .feature-card::after,
+    .room-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -40% auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 62%);
+      pointer-events: none;
+    }
+
+    .feature-card h3,
+    .room-card h3 {
+      margin: 18px 0 10px;
+      font-family: "Syne", sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: -0.04em;
+    }
+
+    .feature-card p,
+    .room-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .feature-visual {
+      height: 220px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+      display: grid;
+      place-items: center;
+    }
+
+    .feature-visual img {
+      width: 72%;
+      height: 72%;
+      object-fit: contain;
+      image-rendering: pixelated;
+      filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.3));
+    }
+
+    .room-card {
+      min-height: 380px;
+      display: grid;
+      align-content: end;
+    }
+
+    .room-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.62;
+      transition: transform 900ms ease;
+    }
+
+    .room-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .room-card .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 20%, rgba(16, 7, 22, 0.36) 56%, rgba(16, 7, 22, 0.94) 100%);
+    }
+
+    .room-card .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .room-card.is-selected {
+      border-color: rgba(255, 255, 255, 0.34);
+      transform: translateY(-6px);
+      box-shadow: 0 36px 90px rgba(0, 0, 0, 0.32);
+    }
+
+    .room-card.is-selected .overlay {
+      background: linear-gradient(180deg, transparent 10%, rgba(16, 7, 22, 0.26) 48%, rgba(16, 7, 22, 0.92) 100%);
+    }
+
+    .room-card .select-note {
+      margin-top: 16px;
+      color: rgba(255, 247, 253, 0.7);
+      font-size: 0.84rem;
+    }
+
+    .burst-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 80;
+      overflow: hidden;
+    }
+
+    .burst-token {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      animation: token-rise 1100ms cubic-bezier(0.2, 1, 0.2, 1) forwards;
+      filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.22));
+    }
+
+    .quote-band {
+      overflow: hidden;
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .quote-track {
+      display: flex;
+      gap: 26px;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+      will-change: transform;
+    }
+
+    .quote-track span {
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      color: rgba(255, 247, 253, 0.78);
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    .cta-panel {
+      position: relative;
+      padding: clamp(28px, 5vw, 52px);
+      border-radius: 38px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 196, 138, 0.24), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(255, 138, 194, 0.24), transparent 26%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      align-items: center;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: transform 900ms cubic-bezier(0.2, 1, 0.2, 1), opacity 900ms ease;
+    }
+
+    .cta-panel h2 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      max-width: 9ch;
+    }
+
+    .cta-panel p {
+      margin: 18px 0 0;
+      max-width: 46ch;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.02rem;
+    }
+
+    .cta-panel .stack {
+      display: grid;
+      gap: 14px;
+      justify-items: start;
+    }
+
+    .download-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .footer {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+      padding: 28px 0 54px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: rgba(219, 200, 230, 0.8);
+      font-size: 0.94rem;
+    }
+
+    .footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: var(--ink);
+    }
+
+    [data-parallax] {
+      transition: transform 120ms linear;
+      will-change: transform;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-18px);
+      }
+    }
+
+    @keyframes bob {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(-2deg);
+      }
+    }
+
+    @keyframes pulse-bar {
+      0%, 100% {
+        width: 76%;
+      }
+      50% {
+        width: 92%;
+      }
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes token-rise {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) scale(0.6) rotate(0deg);
+      }
+      12% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate3d(var(--drift-x, 0px), -120px, 0) scale(1.15) rotate(var(--spin, 0deg));
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .hero,
+      .section-head,
+      .story-grid,
+      .cta-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 18px;
+      }
+
+      .scroll-note {
+        position: static;
+        margin-top: 20px;
+      }
+
+      .story-stage {
+        position: relative;
+        top: auto;
+        min-height: 620px;
+      }
+
+      .feature-grid,
+      .rooms-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        cursor: auto;
+      }
+
+      .cursor,
+      .cursor-ring {
+        display: none;
+      }
+
+      .nav {
+        width: calc(100% - 20px);
+        margin-top: 10px;
+        border-radius: 28px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links,
+      .nav-actions {
+        width: 100%;
+      }
+
+      .nav-actions {
+        justify-content: stretch;
+        flex-direction: column;
+      }
+
+      .nav-actions .chip,
+      .nav-actions .button {
+        width: 100%;
+      }
+
+      .hero,
+      .section,
+      .footer {
+        width: calc(100% - 20px);
+      }
+
+      .hero-meta,
+      .feature-grid,
+      .rooms-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stage {
+        min-height: 540px;
+      }
+
+      .showcase {
+        aspect-ratio: 0.9;
+        border-radius: 30px;
+      }
+
+      .showcase-panel {
+        left: 5%;
+        right: 5%;
+      }
+
+      .story-stage {
+        min-height: 500px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      [data-parallax] {
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="burst-layer" aria-hidden="true"></div>
+
+  <div class="shell">
+    <nav class="nav">
+      <a class="brand magnetic" href="#top" aria-label="Mochi home">
+        <span class="brand-mark">
+          <img src="./assets/app_icon.png" alt="" />
+        </span>
+        <span>Mochi's Daily Quest</span>
+      </a>
+
+      <div class="nav-proof">Notarized desktop ritual for macOS</div>
+
+      <div class="nav-actions">
+        <a class="button magnetic" href="#download">Get the app</a>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div>
+        <div class="eyebrow">Tiny tasks. Living atmosphere. Real momentum.</div>
+        <h1>
+          Build a
+          <span class="dim">soft little universe</span>
+          around your daily habits.
+        </h1>
+        <p class="lede">
+          Mochi's Daily Quest turns checklists into a living companion story: hatch a creature, unlock rooms,
+          collect rewards, and make progress feel tactile, tender, and a little addictive in the best way.
+        </p>
+
+        <div class="hero-proof">
+          <span class="chip">Builds motivation through visible evolution</span>
+          <span class="chip">Unlocks rooms as consistency compounds</span>
+          <span class="chip">Download the live macOS build today</span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="button magnetic" href="#download">Download for macOS</a>
+          <a class="button secondary magnetic" href="#story">See the evolution arc</a>
+        </div>
+
+        <div class="hero-meta">
+          <div class="meta-card">
+            <strong>5</strong>
+            <span>evolution stages from mysterious egg to radiant elder Mochi.</span>
+          </div>
+          <div class="meta-card">
+            <strong>7</strong>
+            <span>dreamy rooms and travel scenes that make productivity feel like play.</span>
+          </div>
+          <div class="meta-card">
+            <strong>1</strong>
+            <span>desktop ritual that stays close, soft, and delightfully alive.</span>
+          </div>
+        </div>
+
+        <div class="scroll-note">Scroll for the quest</div>
+      </div>
+
+      <div class="hero-stage">
+        <div class="glow-stack" data-parallax data-depth="18"></div>
+        <div class="hero-orbit"></div>
+
+        <div class="showcase" data-parallax data-depth="8">
+          <div class="showcase-room">
+            <img id="showcase-room-image" src="./assets/room_tokyo_night.png" alt="Mochi world preview" />
+          </div>
+
+          <img
+            class="sprite sprite-main"
+            id="showcase-main-sprite"
+            src="./assets/mochi_love Background Removed.png"
+            alt="Celebrating Mochi character"
+          />
+          <img
+            class="sprite sprite-alt"
+            id="showcase-alt-sprite"
+            src="./assets/egg_hatching Background Removed.png"
+            alt="Egg stage preview"
+          />
+          <img
+            class="sprite sprite-mini"
+            id="showcase-mini-sprite"
+            src="./assets/teen_excited Background Removed.png"
+            alt="Teen Mochi preview"
+          />
+
+          <div class="showcase-panel">
+            <header>
+              <div class="showcase-copy">
+                <strong id="showcase-title">Tonight’s mood: overjoyed</strong>
+                <p id="showcase-description">Three quests finished. Tokyo glows. Mochi is dancing.</p>
+              </div>
+              <span class="chip" id="showcase-level">Level 18</span>
+            </header>
+            <div class="showcase-progress" aria-hidden="true"><span></span></div>
+            <div class="showcase-controls">
+              <div class="control-row">
+                <span class="control-row-label">Choose evolution stage</span>
+                <button class="control-pill magnetic" data-stage="egg" type="button">Egg</button>
+                <button class="control-pill magnetic" data-stage="baby" type="button">Baby</button>
+                <button class="control-pill magnetic" data-stage="teen" type="button">Teen</button>
+                <button class="control-pill magnetic is-selected" data-stage="mochi" type="button">Mochi</button>
+                <button class="control-pill magnetic" data-stage="elder" type="button">Elder</button>
+              </div>
+              <div class="control-row">
+                <span class="control-row-label">Choose the room mood</span>
+                <button class="control-pill magnetic" data-room="study" type="button">Study</button>
+                <button class="control-pill magnetic" data-room="tokyo-day" type="button">Tokyo Day</button>
+                <button class="control-pill magnetic is-selected" data-room="tokyo-night" type="button">Tokyo Night</button>
+                <button class="control-pill magnetic" data-room="thailand-beach" type="button">Beach</button>
+              </div>
+              <button class="button secondary magnetic reward-button" id="reward-button" type="button">
+                Trigger Reward Burst
+              </button>
+              <div class="reward-status" id="reward-status">Reward stash ready: 0 stars collected.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="quote-band" aria-label="Mood statements">
+      <div class="quote-track">
+        <span>Productivity should feel emotional, not administrative.</span>
+        <span>Grow a companion while you grow your habits.</span>
+        <span>Pixel softness meets ritual design.</span>
+        <span>Your to-do list can become a tiny world.</span>
+        <span>Productivity should feel emotional, not administrative.</span>
+        <span>Grow a companion while you grow your habits.</span>
+        <span>Pixel softness meets ritual design.</span>
+        <span>Your to-do list can become a tiny world.</span>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="section-head">
+        <h2>Every scroll is a stage. Every stage changes the tone.</h2>
+        <p class="section-copy">
+          The app is structured like a miniature coming-of-age story. Your output doesn’t just clear tasks.
+          It changes posture, mood, rooms, motion, and atmosphere. That’s what makes Mochi feel closer to a
+          companion than a utility.
+        </p>
+      </div>
+
+      <div class="story-grid">
+        <aside class="story-stage">
+          <img class="bg" id="story-stage-bg" src="./assets/room_study.png" alt="" />
+          <div class="inner">
+            <span class="chip" id="story-stage-chip">Quest lifecycle</span>
+            <div class="stage-copy">
+              <h3 id="story-stage-title">A quest that grows with you.</h3>
+              <p id="story-stage-description">
+                Start fragile, build attachment, then turn repetition into character.
+              </p>
+            </div>
+            <img
+              class="character"
+              id="story-stage-character"
+              src="./assets/mochi_love Background Removed.png"
+              alt="Current Mochi stage"
+            />
+            <footer>
+              <span class="chip" id="story-stage-room">Tokyo Night</span>
+              <span class="chip" id="story-stage-mood">Mood: Overjoyed</span>
+              <span class="chip" id="story-stage-score">Stars: 0</span>
+            </footer>
+          </div>
+        </aside>
+
+        <div class="story-list">
+          <article class="story-card reveal" data-index="01">
+            <span class="chip">Beginning</span>
+            <h3>An egg that waits for proof you’ll come back tomorrow.</h3>
+            <p>
+              Early progress feels fragile on purpose. The world is quiet, the reward loop is small, and the
+              creature is mostly possibility. The interface says: start gently, but start.
+            </p>
+            <img src="./assets/egg_hatching Background Removed.png" alt="Egg evolution art" />
+          </article>
+
+          <article class="story-card reveal" data-index="02">
+            <span class="chip">Momentum</span>
+            <h3>Baby Mochi turns your checklist into attachment.</h3>
+            <p>
+              Complete a few quests and the companion begins reacting with curiosity, delight, and motion.
+              The habit loop stops feeling like self-discipline and starts feeling reciprocal.
+            </p>
+            <img src="./assets/baby_happy Background Removed.png" alt="Baby Mochi art" />
+          </article>
+
+          <article class="story-card reveal" data-index="03">
+            <span class="chip">Energy</span>
+            <h3>Teen Mochi introduces friction, personality, and spark.</h3>
+            <p>
+              This middle chapter adds drama. Rebellion, studying, celebration, and phone-scrolling moods make
+              the character feel more alive and your consistency feel more consequential.
+            </p>
+            <img src="./assets/teen_excited Background Removed.png" alt="Teen Mochi art" />
+          </article>
+
+          <article class="story-card reveal" data-index="04">
+            <span class="chip">Mastery</span>
+            <h3>Elder Mochi rewards staying power with atmosphere instead of noise.</h3>
+            <p>
+              The final stage isn’t louder. It’s wiser. The aesthetic calms down, the world opens up, and your
+              productivity ritual starts feeling more like care than grinding.
+            </p>
+            <img src="./assets/elder_legacy Background Removed.png" alt="Elder Mochi art" />
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-head">
+        <h2>Built like a toy. Structured like a system.</h2>
+        <p class="section-copy">
+          The best part of Mochi is the blend: emotionally rich visuals wrapped around simple, practical
+          productivity mechanics. It doesn’t overwhelm you with productivity theater. It makes repetition feel good.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card reveal">
+          <div class="feature-visual">
+            <img src="./assets/mochi_checkoff Background Removed.png" alt="Task completion art" />
+          </div>
+          <h3>Task flow with payoff</h3>
+          <p>
+            Add a quest, clear it, and watch the creature’s state respond immediately through mood, happiness,
+            and evolving animation cues.
+          </p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-visual">
+            <img src="./assets/gift_treasure_chest Background Removed.png" alt="Reward art" />
+          </div>
+          <h3>Rewards that feel collectible</h3>
+          <p>
+            Gifts, streak bonuses, XP orbs, and surprise moments transform progress into a sequence of tiny
+            reveals instead of a silent database update.
+          </p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-visual">
+            <img src="./assets/mochi_writing Background Removed.png" alt="Writing Mochi art" />
+          </div>
+          <h3>Desktop-first ritual design</h3>
+          <p>
+            This is built to live beside your work. Open fast, keep close, stay tactile. The app behaves like a
+            companion in your workspace, not another dashboard tab.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="world">
+      <div class="section-head">
+        <h2>The world widens as your consistency deepens.</h2>
+        <p class="section-copy">
+          Mochi’s rooms are not decorative leftovers. They’re chapter changes. Study spaces, bedrooms,
+          Tokyo nights, temple gold, beach light. Your routine earns scenery and that scenery feeds the mood back.
+        </p>
+      </div>
+
+      <div class="rooms-grid">
+        <article class="room-card reveal magnetic" data-room-card="study">
+          <img src="./assets/room_study.png" alt="Study room" />
+          <div class="overlay"></div>
+          <div class="content">
+            <span class="chip">Base camp</span>
+            <h3>Study Room</h3>
+            <p>The origin point. Cozy, focused, familiar. Where the habit loop learns its shape.</p>
+            <div class="select-note">Click to load this room into the live preview.</div>
+          </div>
+        </article>
+
+        <article class="room-card reveal magnetic" data-room-card="tokyo-day">
+          <img src="./assets/room_tokyo_day.png" alt="Tokyo day room" />
+          <div class="overlay"></div>
+          <div class="content">
+            <span class="chip">Unlock at level 5</span>
+            <h3>Tokyo Day</h3>
+            <p>Cherry blossom color and skyline ambition. The world starts to feel larger than your desk.</p>
+            <div class="select-note">Click to load this room into the live preview.</div>
+          </div>
+        </article>
+
+        <article class="room-card reveal magnetic" data-room-card="thailand-beach">
+          <img src="./assets/room_thailand_beach.png" alt="Thailand beach room" />
+          <div class="overlay"></div>
+          <div class="content">
+            <span class="chip">Unlock at level 12</span>
+            <h3>Thailand Beach</h3>
+            <p>Turquoise reward energy. Progress stops being abstract and starts feeling like transport.</p>
+            <div class="select-note">Click to load this room into the live preview.</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="download">
+      <div class="cta-panel reveal">
+        <div>
+          <span class="chip">Ready for your next ritual?</span>
+          <h2>Give your to-do list a heartbeat.</h2>
+          <p>
+            Mochi’s Daily Quest is a tiny desktop world for people who want consistency to feel warm, visual,
+            and alive. Download the macOS build, hatch your companion, and let progress change the room around you.
+          </p>
+          <div class="download-meta">
+            <span class="chip">Electron 41</span>
+            <span class="chip">Apple Silicon + Intel</span>
+            <span class="chip">Kawaii pixel atmosphere</span>
+          </div>
+        </div>
+
+        <div class="stack">
+          <a
+            class="button magnetic"
+            href="https://github.com/dot-RealityTest/apps/tree/master/mochi"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View Mochi on GitHub
+          </a>
+          <a class="button secondary magnetic" href="https://github.com/dot-RealityTest/apps" target="_blank" rel="noreferrer">Browse the apps repo</a>
+          <span class="chip">Hosted on GitHub Pages</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Built for soft-focus productivity and tiny emotional momentum.</span>
+      <span>
+        By <a href="https://akakika.com" target="_blank" rel="noreferrer">Kika</a>
+        · <a href="https://github.com/dot-RealityTest/apps/tree/master/mochi" target="_blank" rel="noreferrer">Source</a>
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const burstLayer = document.querySelector(".burst-layer");
+    const magneticItems = document.querySelectorAll(".magnetic");
+    const parallaxNodes = document.querySelectorAll("[data-parallax]");
+    const revealNodes = document.querySelectorAll(".reveal");
+    const stageButtons = document.querySelectorAll("[data-stage]");
+    const roomButtons = document.querySelectorAll("[data-room]");
+    const roomCards = document.querySelectorAll("[data-room-card]");
+    const rewardButton = document.querySelector("#reward-button");
+    const rewardStatus = document.querySelector("#reward-status");
+    const showcaseRoomImage = document.querySelector("#showcase-room-image");
+    const showcaseMainSprite = document.querySelector("#showcase-main-sprite");
+    const showcaseAltSprite = document.querySelector("#showcase-alt-sprite");
+    const showcaseMiniSprite = document.querySelector("#showcase-mini-sprite");
+    const showcaseTitle = document.querySelector("#showcase-title");
+    const showcaseDescription = document.querySelector("#showcase-description");
+    const showcaseLevel = document.querySelector("#showcase-level");
+    const storyStageBg = document.querySelector("#story-stage-bg");
+    const storyStageChip = document.querySelector("#story-stage-chip");
+    const storyStageTitle = document.querySelector("#story-stage-title");
+    const storyStageDescription = document.querySelector("#story-stage-description");
+    const storyStageCharacter = document.querySelector("#story-stage-character");
+    const storyStageRoom = document.querySelector("#story-stage-room");
+    const storyStageMood = document.querySelector("#story-stage-mood");
+    const storyStageScore = document.querySelector("#story-stage-score");
+
+    const stages = {
+      egg: {
+        label: "Egg",
+        title: "Mood: Hatching tension",
+        description: "The beginning is gentle and a little suspenseful. Mochi is still mostly promise.",
+        level: "Level 1",
+        mood: "Hatching",
+        roomPref: "study",
+        main: "./assets/egg_hatching Background Removed.png",
+        alt: "./assets/baby_curious Background Removed.png",
+        mini: "./assets/gift_star_reward Background Removed.png",
+        storyTitle: "The ritual starts as a fragile promise.",
+        storyDescription: "An egg asks for consistency before it asks for ambition. Show up first. The magic follows.",
+        chip: "Origin stage"
+      },
+      baby: {
+        label: "Baby",
+        title: "Mood: Curious and attached",
+        description: "Your first streaks make the world responsive. Mochi begins to mirror your momentum.",
+        level: "Level 6",
+        mood: "Curious",
+        roomPref: "study",
+        main: "./assets/baby_happy Background Removed.png",
+        alt: "./assets/egg_hatching Background Removed.png",
+        mini: "./assets/gift_wrapped_present Background Removed.png",
+        storyTitle: "Attachment turns tasks into care.",
+        storyDescription: "Baby Mochi makes the loop emotional. The more you return, the more alive the companion feels.",
+        chip: "Attachment stage"
+      },
+      teen: {
+        label: "Teen",
+        title: "Mood: Electric and dramatic",
+        description: "This is the high-energy chapter where personality takes over and the room starts to pulse.",
+        level: "Level 12",
+        mood: "Charged",
+        roomPref: "tokyo-day",
+        main: "./assets/teen_excited Background Removed.png",
+        alt: "./assets/teen_phone Background Removed.png",
+        mini: "./assets/gift_xp_orb Background Removed.png",
+        storyTitle: "Teen Mochi makes progress feel loud.",
+        storyDescription: "Excitement, rebellion, studying, and social chaos all become part of the same productivity arc.",
+        chip: "Spark stage"
+      },
+      mochi: {
+        label: "Mochi",
+        title: "Mood: Overjoyed in neon",
+        description: "The fully realized companion turns task completion into celebration with room-scale atmosphere.",
+        level: "Level 18",
+        mood: "Overjoyed",
+        roomPref: "tokyo-night",
+        main: "./assets/mochi_love Background Removed.png",
+        alt: "./assets/mochi_reward Background Removed.png",
+        mini: "./assets/gift_treasure_chest Background Removed.png",
+        storyTitle: "The ritual becomes a tiny living world.",
+        storyDescription: "By now the app feels less like a list and more like a companion with a weather system.",
+        chip: "Signature stage"
+      },
+      elder: {
+        label: "Elder",
+        title: "Mood: Calm mastery",
+        description: "The energy softens into wisdom. Rewards still sparkle, but the emotional texture turns serene.",
+        level: "Level 27",
+        mood: "Enlightened",
+        roomPref: "thailand-beach",
+        main: "./assets/elder_legacy Background Removed.png",
+        alt: "./assets/elder_meditating Background Removed.png",
+        mini: "./assets/gift_streak_flame Background Removed.png",
+        storyTitle: "Consistency ages into atmosphere.",
+        storyDescription: "Elder Mochi is what long-term ritual looks like: grounded, warm, and quietly radiant.",
+        chip: "Mastery stage"
+      }
+    };
+
+    const rooms = {
+      study: {
+        label: "Study Room",
+        image: "./assets/room_study.png"
+      },
+      "tokyo-day": {
+        label: "Tokyo Day",
+        image: "./assets/room_tokyo_day.png"
+      },
+      "tokyo-night": {
+        label: "Tokyo Night",
+        image: "./assets/room_tokyo_night.png"
+      },
+      "thailand-beach": {
+        label: "Thailand Beach",
+        image: "./assets/room_thailand_beach.png"
+      }
+    };
+
+    const tokens = ["⭐", "✨", "💖", "🌸", "🎁"];
+
+    const pageState = {
+      stage: "mochi",
+      room: "tokyo-night",
+      rewardCount: 0
+    };
+
+    function updateSelectableState(collection, activeKey, attr) {
+      collection.forEach((item) => {
+        item.classList.toggle("is-selected", item.dataset[attr] === activeKey);
+      });
+    }
+
+    function renderInteractiveState() {
+      const stage = stages[pageState.stage];
+      const room = rooms[pageState.room];
+
+      showcaseRoomImage.src = room.image;
+      showcaseRoomImage.alt = `${room.label} preview`;
+      showcaseMainSprite.src = stage.main;
+      showcaseAltSprite.src = stage.alt;
+      showcaseMiniSprite.src = stage.mini;
+      showcaseTitle.textContent = stage.title;
+      showcaseDescription.textContent = `${stage.description} ${room.label} is currently loaded into the preview.`;
+      showcaseLevel.textContent = stage.level;
+
+      storyStageBg.src = room.image;
+      storyStageCharacter.src = stage.main;
+      storyStageCharacter.alt = `${stage.label} Mochi stage art`;
+      storyStageChip.textContent = stage.chip;
+      storyStageTitle.textContent = stage.storyTitle;
+      storyStageDescription.textContent = stage.storyDescription;
+      storyStageRoom.textContent = room.label;
+      storyStageMood.textContent = `Mood: ${stage.mood}`;
+      storyStageScore.textContent = `Stars: ${pageState.rewardCount}`;
+      rewardStatus.textContent = `Reward stash ready: ${pageState.rewardCount} star${pageState.rewardCount === 1 ? "" : "s"} collected.`;
+
+      updateSelectableState(stageButtons, pageState.stage, "stage");
+      updateSelectableState(roomButtons, pageState.room, "room");
+      updateSelectableState(roomCards, pageState.room, "roomCard");
+    }
+
+    function spawnBurst(originX, originY) {
+      for (let i = 0; i < 7; i += 1) {
+        const token = document.createElement("span");
+        token.className = "burst-token";
+        token.textContent = tokens[(pageState.rewardCount + i) % tokens.length];
+        token.style.left = `${originX + (Math.random() * 36 - 18)}px`;
+        token.style.top = `${originY + (Math.random() * 12 - 6)}px`;
+        token.style.setProperty("--drift-x", `${Math.random() * 110 - 55}px`);
+        token.style.setProperty("--spin", `${Math.random() * 80 - 40}deg`);
+        burstLayer.appendChild(token);
+        token.addEventListener("animationend", () => token.remove(), { once: true });
+      }
+    }
+
+    window.addEventListener("mousemove", (event) => {
+      if (prefersReducedMotion) {
+        return;
+      }
+
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      parallaxNodes.forEach((node) => {
+        const depth = Number(node.dataset.depth || 10);
+        const moveX = (event.clientX - centerX) / depth;
+        const moveY = (event.clientY - centerY) / depth;
+        node.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+      });
+    });
+
+    stageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        pageState.stage = button.dataset.stage;
+        if (stages[pageState.stage].roomPref) {
+          pageState.room = stages[pageState.stage].roomPref;
+        }
+        renderInteractiveState();
+      });
+    });
+
+    roomButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        pageState.room = button.dataset.room;
+        renderInteractiveState();
+      });
+    });
+
+    roomCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        pageState.room = card.dataset.roomCard;
+        renderInteractiveState();
+      });
+    });
+
+    rewardButton.addEventListener("click", (event) => {
+      pageState.rewardCount += 1;
+      renderInteractiveState();
+      const rect = event.currentTarget.getBoundingClientRect();
+      spawnBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    });
+
+    magneticItems.forEach((item) => {
+      item.addEventListener("mouseleave", () => {
+        item.style.transform = "";
+      });
+
+      item.addEventListener("mousemove", (event) => {
+        if (prefersReducedMotion) {
+          return;
+        }
+
+        const rect = item.getBoundingClientRect();
+        const offsetX = event.clientX - rect.left - rect.width / 2;
+        const offsetY = event.clientY - rect.top - rect.height / 2;
+        item.style.transform = `translate(${offsetX * 0.08}px, ${offsetY * 0.08}px)`;
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.16 }
+    );
+
+    revealNodes.forEach((node) => observer.observe(node));
+    renderInteractiveState();
+
+    window.render_game_to_text = () =>
+      JSON.stringify({
+        mode: "landing-page",
+        coordinateSystem: {
+          origin: "top-left",
+          xDirection: "right",
+          yDirection: "down"
+        },
+        interactive: {
+          selectedStage: pageState.stage,
+          selectedRoom: pageState.room,
+          rewardCount: pageState.rewardCount
+        },
+        visible: {
+          showcaseTitle: showcaseTitle.textContent,
+          showcaseLevel: showcaseLevel.textContent,
+          storyTitle: storyStageTitle.textContent,
+          storyRoom: storyStageRoom.textContent
+        }
+      });
+
+    window.advanceTime = (ms = 16) => {
+      const syntheticY = (window.scrollY + ms * 0.06) % Math.max(window.innerHeight, document.body.scrollHeight);
+      window.scrollTo({ top: syntheticY, behavior: "instant" });
+      return window.render_game_to_text();
+    };
+  </script>
+</body>
+</html>
