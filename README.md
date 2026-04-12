@@ -9,6 +9,12 @@ A desktop companion that makes progress feel alive.
 - GitHub Page: [dot-RealityTest.github.io/mochi](https://dot-RealityTest.github.io/mochi/)
 - App source: [dot-RealityTest/apps/tree/master/mochi](https://github.com/dot-RealityTest/apps/tree/master/mochi)
 
+## Latest Notarized Download
+
+- Latest notarized version: `1.0.0`
+- Download for macOS (Apple Silicon): [Mochi's Daily Quest 1.0.0 DMG](https://github.com/dot-RealityTest/apps/releases/download/v0.1.0/Mochi.s.Daily.Quest-1.0.0-arm64.dmg)
+- Release page: [dot-RealityTest/apps/releases/tag/v0.1.0](https://github.com/dot-RealityTest/apps/releases/tag/v0.1.0)
+
 ## What It Does
 
 **Simple Todo List**
