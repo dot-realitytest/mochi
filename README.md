@@ -6,7 +6,7 @@ A desktop companion that makes progress feel alive.
 
 ## Live Page
 
-- GitHub Page: [dot-RealityTest.github.io/mochi](https://dot-RealityTest.github.io/mochi/)
+- Site: [akakika.com/mochi](https://akakika.com/mochi/)
 - App source: [dot-RealityTest/apps/tree/master/mochi](https://github.com/dot-RealityTest/apps/tree/master/mochi)
 
 ## Latest Notarized Download
