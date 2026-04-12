@@ -1,6 +1,37 @@
-# Mochi
+# mochi — Grow Your Companion with Every Task
 
-Standalone GitHub Pages site for the Mochi app.
+A kawaii Tamagotchi-style daily to-do app. Complete tasks, watch your mochi grow.
 
-- Live page: [dot-RealityTest.github.io/mochi](https://dot-RealityTest.github.io/mochi/)
+## Live Page
+
+- GitHub Page: [dot-RealityTest.github.io/mochi](https://dot-RealityTest.github.io/mochi/)
 - App source: [dot-RealityTest/apps/tree/master/mochi](https://github.com/dot-RealityTest/apps/tree/master/mochi)
+
+## What It Does
+
+**Simple Todo List**
+- Add tasks, check them off
+- Clean, minimal interface
+- Lives in your menu bar
+
+**Kawaii Companion**
+- Your mochi character grows with every completed task
+- Starts as an egg and evolves through baby, teen, and elder
+- Reacts to your progress
+
+**Evolution System**
+- Egg: Just starting your journey
+- Baby: Learning to check off tasks
+- Teen: Building habits with confidence
+- Elder: Master of your daily routine
+
+**Notarized for macOS**
+- Safe to install
+- No warnings
+- Native Electron app
+
+## Why This Repo Exists
+
+This repository is the standalone GitHub Pages home for Mochi.
+
+It keeps the public landing page separate from the main app workspace so the live page can stay simple, fast, and easy to publish.
