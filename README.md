@@ -173,7 +173,7 @@ A: Yes!
 
 ## 📄 License
 
-**Private** — All rights reserved to KIKA.
+**Private — All rights reserved to KIKA.**
 
 ---
 
