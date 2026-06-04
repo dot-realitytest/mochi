@@ -2,8 +2,8 @@
 
 > **Give your to-do list a heartbeat.** A desktop companion that makes progress feel alive.
 
-[![Download](https://img.shields.io/badge/Download-macOS%20.dmg-ff6b9d?style=for-the-badge&logo=apple)](https://github.com/dot-RealityTest/mochi/releases/latest/download/mochi-0.0.0-arm64.dmg)
-[![Releases](https://img.shields.io/github/v/release/dot-RealityTest/mochi?style=for-the-badge&logo=github)](https://github.com/dot-RealityTest/mochi/releases/latest)
+[![Download](https://img.shields.io/badge/Download-macOS%20.dmg-ff6b9d?style=for-the-badge&logo=apple)](https://github.com/aka-kika/mochi/releases/latest/download/mochi-0.0.0-arm64.dmg)
+[![Releases](https://img.shields.io/github/v/release/aka-kika/mochi?style=for-the-badge&logo=github)](https://github.com/aka-kika/mochi/releases/latest)
 [![Website](https://img.shields.io/badge/Website-akakika.com/mochi-38bdf8?style=for-the-badge&logo=vercel)](https://akakika.com/mochi/)
 
 ---
@@ -11,7 +11,7 @@
 ## 🌐 Live
 
 **Website:** [https://akakika.com/mochi/](https://akakika.com/mochi/)  
-**Download:** [Latest macOS .dmg](https://github.com/dot-RealityTest/mochi/releases/latest/download/mochi-0.0.0-arm64.dmg)
+**Download:** [Latest macOS .dmg](https://github.com/aka-kika/mochi/releases/latest/download/mochi-0.0.0-arm64.dmg)
 
 ---
 
@@ -89,7 +89,7 @@ The UI isn't just pretty — it's **emotional design**.
 
 ### Install
 
-1. **[Download the latest .dmg](https://github.com/dot-RealityTest/mochi/releases/latest/download/mochi-0.0.0-arm64.dmg)**
+1. **[Download the latest .dmg](https://github.com/aka-kika/mochi/releases/latest/download/mochi-0.0.0-arm64.dmg)**
 2. Open and drag to Applications
 3. Launch Mochi from your menu bar
 4. Hatch your first companion!
@@ -98,7 +98,7 @@ The UI isn't just pretty — it's **emotional design**.
 
 ```bash
 # Clone
-git clone https://github.com/dot-RealityTest/mochi.git
+git clone https://github.com/aka-kika/mochi.git
 cd mochi
 
 # Install
